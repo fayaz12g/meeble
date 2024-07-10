@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.cb81b381.js",
-    "static/js/453.4235cb35.chunk.js": "/static/js/453.4235cb35.chunk.js",
-    "static/media/enemy.png": "/static/media/enemy.16ed881d9ec597842029.png",
-    "static/media/meeble.png": "/static/media/meeble.16ed881d9ec597842029.png",
-    "static/media/meeblepistol.png": "/static/media/meeblepistol.16ed881d9ec597842029.png",
-    "static/media/grass.svg": "/static/media/grass.c1b33013db600ca404508968ff3d2fcf.svg",
-    "static/media/bubble.svg": "/static/media/bubble.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
-    "static/media/carrot.svg": "/static/media/carrot.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
-    "static/media/special-bullets.svg": "/static/media/special-bullets.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
-    "index.html": "/index.html",
-    "static/media/checkerboard.svg": "/static/media/checkerboard.0efe9e017fa6999b327ddbe2bc778806.svg",
-    "static/media/rainbowgun.svg": "/static/media/rainbowgun.ce1ff293ff46a4493f09f24bf4de99b2.svg",
-    "static/media/pistol.svg": "/static/media/pistol.068447541ae662ab009e7050b1adbc67.svg",
-    "static/media/bubble-blaster.svg": "/static/media/bubble-blaster.1de3e6a69be8f0bb303e9d5c1eaefa7a.svg",
-    "static/media/carrot-cannon.svg": "/static/media/carrot-cannon.dfdaa4a62320b6034238538be88fa09a.svg",
-    "static/media/bush.svg": "/static/media/bush.770873d0a0c151e038d062d9452ccba4.svg",
-    "static/media/bullet.svg": "/static/media/bullet.f13d222ca531a7bf8107595c6164b415.svg",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.cb81b381.js.map": "/static/js/main.cb81b381.js.map",
-    "453.4235cb35.chunk.js.map": "/static/js/453.4235cb35.chunk.js.map"
+    "main.css": "/meeble/static/css/main.b6ea2585.css",
+    "main.js": "/meeble/static/js/main.023c202a.js",
+    "static/js/453.4235cb35.chunk.js": "/meeble/static/js/453.4235cb35.chunk.js",
+    "static/media/enemy.png": "/meeble/static/media/enemy.16ed881d9ec597842029.png",
+    "static/media/meeble.png": "/meeble/static/media/meeble.16ed881d9ec597842029.png",
+    "static/media/meeblepistol.png": "/meeble/static/media/meeblepistol.16ed881d9ec597842029.png",
+    "static/media/grass.svg": "/meeble/static/media/grass.c1b33013db600ca404508968ff3d2fcf.svg",
+    "static/media/bubble.svg": "/meeble/static/media/bubble.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
+    "static/media/carrot.svg": "/meeble/static/media/carrot.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
+    "static/media/special-bullets.svg": "/meeble/static/media/special-bullets.2fe283d3b1d578d6f4cadc4bf502c90e.svg",
+    "index.html": "/meeble/index.html",
+    "static/media/checkerboard.svg": "/meeble/static/media/checkerboard.0efe9e017fa6999b327ddbe2bc778806.svg",
+    "static/media/rainbowgun.svg": "/meeble/static/media/rainbowgun.ce1ff293ff46a4493f09f24bf4de99b2.svg",
+    "static/media/pistol.svg": "/meeble/static/media/pistol.068447541ae662ab009e7050b1adbc67.svg",
+    "static/media/bubble-blaster.svg": "/meeble/static/media/bubble-blaster.1de3e6a69be8f0bb303e9d5c1eaefa7a.svg",
+    "static/media/carrot-cannon.svg": "/meeble/static/media/carrot-cannon.dfdaa4a62320b6034238538be88fa09a.svg",
+    "static/media/bush.svg": "/meeble/static/media/bush.770873d0a0c151e038d062d9452ccba4.svg",
+    "static/media/bullet.svg": "/meeble/static/media/bullet.f13d222ca531a7bf8107595c6164b415.svg",
+    "main.b6ea2585.css.map": "/meeble/static/css/main.b6ea2585.css.map",
+    "main.023c202a.js.map": "/meeble/static/js/main.023c202a.js.map",
+    "453.4235cb35.chunk.js.map": "/meeble/static/js/453.4235cb35.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.cb81b381.js"
+    "static/css/main.b6ea2585.css",
+    "static/js/main.023c202a.js"
   ]
 }
