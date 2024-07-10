@@ -19,8 +19,12 @@ import specialBullets from './image/gun/special-bullets.svg';
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  scale: {
+    mode: Phaser.Scale.RESIZE, // Scale mode to resize the game to fit the screen
+    parent: 'phaser-game', // Div ID where Phaser will render
+    width: '100%', // Width of the game
+    height: '100%' // Height of the game
+  },
   physics: {
     default: 'arcade',
     arcade: {
@@ -166,7 +170,8 @@ function create() {
   });
 
   // Create repeating background
-  this.bg = this.add.tileSprite(0, 0, config.width * 4, config.height, 'grass').setOrigin(0, 0);
+  this.bg = this.add.tileSprite(0, 0, this.scale.width * 4, this.scale.height, 'grass').setOrigin(0, 0);
+
   
   // Create world bounds
   this.physics.world.setBounds(0, 0, config.width * 4, config.height);
@@ -248,55 +253,54 @@ for (let i = 0; i < 5; i++) {
   this.fireKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
   this.sprintKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT);
 
-  
   // Set up inventory
-  this.playerInventory = [];
-  this.currentWeaponIndex = -1;
+this.playerInventory = [];
+this.currentWeaponIndex = -1;
 
-  // Create inventory UI
-  this.inventoryUI = this.add.group();
-  const slotWidth = 50;
-  const slotHeight = 50;
-  const slotSpacing = 10; // Space between slots
-  const numSlots = 4;
-  const totalWidth = numSlots * slotWidth + (numSlots - 1) * slotSpacing;
-  const startX = (config.width - totalWidth) / 2;
-  const y = config.height - 70;
+// Create inventory UI
+this.inventoryUI = this.add.group();
+const slotWidth = 50;
+const slotHeight = 50;
+const slotSpacing = 10; // Space between slots
+const numSlots = 4;
+const totalWidth = numSlots * slotWidth + (numSlots - 1) * slotSpacing;
+const startX = (this.scale.width - totalWidth) / 2;
+const y = this.scale.height - 90;
 
-  for (let i = 0; i < numSlots; i++) {
-    const x = startX + i * (slotWidth + slotSpacing);
-    const slot = this.add.rectangle(x, y, slotWidth, slotHeight, 0x555555).setOrigin(0, 0);
-    const icon = this.add.image(x + slotWidth / 2, y + slotHeight / 2, 'pistol').setScale(0.2);
-    icon.setVisible(false);
-    // Set scroll factor to 0 to make it fixed on the screen
-    slot.setScrollFactor(0);
-    icon.setScrollFactor(0);
-    this.inventoryUI.add(slot);
-    this.inventoryUI.add(icon);
-  }
-  
-  // Create stamina bar
-  this.staminaBar = this.add.rectangle(10, config.height - 20, 200, 10, 0xffffff);
-  this.staminaBar.setOrigin(0, 0);
-  this.stamina = 100;
+for (let i = 0; i < numSlots; i++) {
+  const x = startX + i * (slotWidth + slotSpacing);
+  const slot = this.add.rectangle(x, y, slotWidth, slotHeight, 0x555555).setOrigin(0, 0);
+  const icon = this.add.image(x + slotWidth / 2, y + slotHeight / 2, 'pistol').setScale(0.2);
+  icon.setVisible(false);
+  // Set scroll factor to 0 to make it fixed on the screen
+  slot.setScrollFactor(0);
+  icon.setScrollFactor(0);
+  this.inventoryUI.add(slot);
+  this.inventoryUI.add(icon);
+}
 
-  // Create health bar
-  const healthBarWidth = 200;
-  const healthBarHeight = 10;
-  const healthBarX = config.width - healthBarWidth - 10;
-  const healthBarY = config.height - healthBarHeight - 20;
-  this.healthBar = this.add.rectangle(healthBarX, healthBarY, healthBarWidth, healthBarHeight, 0x00ff00);
-  this.healthBar.setOrigin(0, 0);
-  this.health = 100;
-  this.healthBar.setScrollFactor(0);
-  
-  // Create instructions text
-  const instructions = 'WASD: Move | Q: Switch Weapon | SPACE/CLICK: Shoot | SHIFT: Sprint | Mouse: Aim';
-  const textStyle = { fontSize: '16px', fill: '#fff' };
-  this.instructionsText = this.add.text(0, 10, instructions, textStyle);
-  const textWidth = this.instructionsText.width;
-  this.instructionsText.setX((config.width - textWidth) / 2);
-  this.instructionsText.setScrollFactor(0);
+// Create stamina bar
+this.staminaBar = this.add.rectangle(10, this.scale.height - 20, 200, 10, 0xffffff);
+this.staminaBar.setOrigin(0, 0);
+this.stamina = 100;
+
+// Create health bar
+const healthBarWidth = 200;
+const healthBarHeight = 10;
+const healthBarX = this.scale.width - healthBarWidth - 10;
+const healthBarY = this.scale.height - healthBarHeight - 20;
+this.healthBar = this.add.rectangle(healthBarX, healthBarY, healthBarWidth, healthBarHeight, 0x00ff00);
+this.healthBar.setOrigin(0, 0);
+this.health = 100;
+this.healthBar.setScrollFactor(0);
+
+// Create instructions text
+const instructions = 'WASD: Move | Q: Switch Weapon | SPACE/CLICK: Shoot | SHIFT: Sprint | Mouse: Aim';
+const textStyle = { fontSize: '16px', fill: '#fff' };
+this.instructionsText = this.add.text(0, 10, instructions, textStyle);
+const textWidth = this.instructionsText.width;
+this.instructionsText.setX((this.scale.width - textWidth) / 2);
+this.instructionsText.setScrollFactor(0);
 
 
   // Win condition
