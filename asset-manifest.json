@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/meeble/static/css/main.25cb6ae1.css",
-    "main.js": "/meeble/static/js/main.d6be521c.js",
+    "main.css": "/meeble/static/css/main.9dc890fe.css",
+    "main.js": "/meeble/static/js/main.985a7f8e.js",
     "static/js/453.4235cb35.chunk.js": "/meeble/static/js/453.4235cb35.chunk.js",
     "static/media/meeble.m4a": "/meeble/static/media/meeble.d99f75267fd56c01ec97.m4a",
     "static/media/enemy.png": "/meeble/static/media/enemy.16ed881d9ec597842029.png",
@@ -19,12 +19,12 @@
     "static/media/carrot-cannon.svg": "/meeble/static/media/carrot-cannon.dfdaa4a62320b6034238538be88fa09a.svg",
     "static/media/bush.svg": "/meeble/static/media/bush.770873d0a0c151e038d062d9452ccba4.svg",
     "static/media/bullet.svg": "/meeble/static/media/bullet.f13d222ca531a7bf8107595c6164b415.svg",
-    "main.25cb6ae1.css.map": "/meeble/static/css/main.25cb6ae1.css.map",
-    "main.d6be521c.js.map": "/meeble/static/js/main.d6be521c.js.map",
+    "main.9dc890fe.css.map": "/meeble/static/css/main.9dc890fe.css.map",
+    "main.985a7f8e.js.map": "/meeble/static/js/main.985a7f8e.js.map",
     "453.4235cb35.chunk.js.map": "/meeble/static/js/453.4235cb35.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.25cb6ae1.css",
-    "static/js/main.d6be521c.js"
+    "static/css/main.9dc890fe.css",
+    "static/js/main.985a7f8e.js"
   ]
 }
