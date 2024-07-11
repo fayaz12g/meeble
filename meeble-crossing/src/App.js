@@ -632,13 +632,16 @@ const MeebleCrossing = () => {
   return (
     <>
       <BackgroundMusic audioSrc={titleTheme} loopStart={3} loopEnd={15} isPlaying={true} />
-      <div className="game-container" id="phaser-game" />
+      <div className="game-container" id="phaser-game">
       <div className="mobile-controls">
         <div ref={leftJoystickRef} className="joystick"></div>
         <div ref={rightJoystickRef} className="joystick"></div>
         <button id="fireButton" className="control-button">Fire</button>
         <button id="switchButton" className="control-button">Switch</button>
       </div>
+      </div>
     </>
   );
 };
+
+export default MeebleCrossing;
