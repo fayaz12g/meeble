@@ -314,6 +314,59 @@ this.instructionsText.setScrollFactor(0);
       updatePlayerWeapon.call(this);
     }
   });
+
+  // Add joystick creation here
+  this.input.addPointer(1); // Allow for multi-touch
+
+  this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (this.isMobile) {
+    this.leftJoystick = this.plugins.add(NippleJS, {
+      zone: this.add.circle(100, this.scale.height - 100, 50, 0x0000ff, 0.5),
+      mode: 'static',
+      color: 'blue'
+    });
+
+    this.rightJoystick = this.plugins.add(NippleJS, {
+      zone: this.add.circle(this.scale.width - 100, this.scale.height - 100, 50, 0xff0000, 0.5),
+      mode: 'static',
+      color: 'red'
+    });
+
+    this.leftJoystick.on('move', (evt, data) => {
+      const speed = 160 * data.force;
+      this.player.setVelocity(data.vector.x * speed, data.vector.y * speed);
+    });
+
+    this.leftJoystick.on('end', () => {
+      this.player.setVelocity(0);
+    });
+
+    this.rightJoystick.on('move', (evt, data) => {
+      const angle = Phaser.Math.Angle.Between(0, 0, data.vector.x, data.vector.y);
+      this.playerWeapon.setRotation(angle);
+    });
+
+    // Add mobile fire button
+    const fireButton = this.add.circle(this.scale.width - 50, this.scale.height - 50, 30, 0xff0000);
+    fireButton.setInteractive();
+    fireButton.on('pointerdown', () => {
+      // Implement firing logic here
+      console.log('Fire!');
+    });
+  } else {
+    // Desktop controls setup
+    this.input.on('pointermove', (pointer) => {
+      if (this.player && this.playerWeapon) {
+        const angle = Phaser.Math.Angle.Between(
+          this.player.x, this.player.y,
+          pointer.x + this.cameras.main.scrollX,
+          pointer.y + this.cameras.main.scrollY
+        );
+        this.playerWeapon.setRotation(angle);
+      }
+    });
+  }
 }
 
 function update() {
@@ -579,50 +632,10 @@ function winLevel(player, checkerboard) {
 
 const MeebleCrossing = () => {
   const gameRef = useRef(null);
-  const leftJoystickRef = useRef(null);
-  const rightJoystickRef = useRef(null);
 
   useEffect(() => {
     const game = new Phaser.Game(config);
     gameRef.current = game;
-
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      const leftJoystick = NippleJS.create({
-        zone: leftJoystickRef.current,
-        mode: 'static',
-        position: { left: '50px', bottom: '150px' }, // Adjust position as needed
-        color: 'blue'
-      });
-
-      const rightJoystick = NippleJS.create({
-        zone: rightJoystickRef.current,
-        mode: 'static',
-        position: { right: '50px', bottom: '150px' }, // Adjust position as needed
-        color: 'red'
-      });
-
-      leftJoystick.on('move', (evt, data) => {
-        // Handle movement control
-        console.log('Move', data);
-      });
-
-      rightJoystick.on('move', (evt, data) => {
-        // Handle gun direction control
-        console.log('Aim', data);
-      });
-
-      document.getElementById('fireButton').addEventListener('click', () => {
-        // Handle firing
-        console.log('Fire');
-      });
-
-      document.getElementById('switchButton').addEventListener('click', () => {
-        // Handle switching inventory
-        console.log('Switch Inventory');
-      });
-    }
 
     return () => {
       game.destroy(true);
@@ -632,14 +645,7 @@ const MeebleCrossing = () => {
   return (
     <>
       <BackgroundMusic audioSrc={titleTheme} loopStart={3} loopEnd={15} isPlaying={true} />
-      <div className="game-container" id="phaser-game">
-      <div className="mobile-controls">
-        <div ref={leftJoystickRef} className="joystick"></div>
-        <div ref={rightJoystickRef} className="joystick"></div>
-        <button id="fireButton" className="control-button">Fire</button>
-        <button id="switchButton" className="control-button">Switch</button>
-      </div>
-      </div>
+      <div className="game-container" id="phaser-game"></div>
     </>
   );
 };
