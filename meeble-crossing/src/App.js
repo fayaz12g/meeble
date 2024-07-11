@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
+import NippleJS from 'nipplejs';
 
 import meebleImage from './image/player/meeble.png';
 import meeblePistolImage from './image/player/meeblepistol.png';
@@ -16,6 +17,8 @@ import carrotImage from './image/gun/carrot/carrot.svg';
 import rainbowGunImage from './image/gun/rainbow/rainbowgun.svg';
 import rainbowRayImage from './image/gun/rainbow/rainbowray.png';
 import specialBullets from './image/gun/special-bullets.svg';
+import BackgroundMusic from './BackgroundMusic';
+import titleTheme from './meeble.m4a';
 
 const config = {
   type: Phaser.AUTO,
@@ -581,17 +584,68 @@ function winLevel(player, checkerboard) {
 
 const MeebleCrossing = () => {
   const gameRef = useRef(null);
+  const leftJoystickRef = useRef(null);
+  const rightJoystickRef = useRef(null);
 
   useEffect(() => {
     const game = new Phaser.Game(config);
     gameRef.current = game;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      const leftJoystick = NippleJS.create({
+        zone: leftJoystickRef.current,
+        mode: 'static',
+        position: { left: '50px', bottom: '100px' },
+        color: 'blue'
+      });
+
+      const rightJoystick = NippleJS.create({
+        zone: rightJoystickRef.current,
+        mode: 'static',
+        position: { right: '50px', bottom: '100px' },
+        color: 'red'
+      });
+
+      leftJoystick.on('move', (evt, data) => {
+        // Handle movement control
+        console.log('Move', data);
+      });
+
+      rightJoystick.on('move', (evt, data) => {
+        // Handle gun direction control
+        console.log('Aim', data);
+      });
+
+      document.getElementById('fireButton').addEventListener('click', () => {
+        // Handle firing
+        console.log('Fire');
+      });
+
+      document.getElementById('switchButton').addEventListener('click', () => {
+        // Handle switching inventory
+        console.log('Switch Inventory');
+      });
+    }
 
     return () => {
       game.destroy(true);
     };
   }, []);
 
-  return <div className="game-container" id="phaser-game" />;
+  return (
+    <>
+      <playMusic audioSrc="titleTheme" loopStart="3" loopEnd="15" isPlaying="true" />
+      <div className="game-container" id="phaser-game" />
+      <div className="mobile-controls">
+        <div ref={leftJoystickRef} className="joystick"></div>
+        <div ref={rightJoystickRef} className="joystick"></div>
+        <button id="fireButton" className="control-button">Fire</button>
+        <button id="switchButton" className="control-button">Switch</button>
+      </div>
+    </>
+  );
 };
 
 export default MeebleCrossing;

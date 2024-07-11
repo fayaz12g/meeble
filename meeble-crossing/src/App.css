@@ -43,3 +43,42 @@
   justify-content: center;
   cursor: none;
 }
+
+.mobile-controls {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.joystick {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: all;
+}
+
+.control-button {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 10px;
+  pointer-events: all;
+  opacity: 0.7;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+}
+
+#fireButton {
+  right: 10px;
+  bottom: 100px;
+}
+
+#switchButton {
+  left: 10px;
+  bottom: 100px;
+}
