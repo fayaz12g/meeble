@@ -22,24 +22,20 @@ import titleTheme from './meeble.m4a';
 
 const config = {
   type: Phaser.AUTO,
-  scale: {
-    mode: Phaser.Scale.RESIZE, // Scale mode to resize the game to fit the screen
-    parent: 'phaser-game', // Div ID where Phaser will render
-    width: '100%', // Width of the game
-    height: '100%' // Height of the game
-  },
+  width: window.innerWidth,
+  height: window.innerHeight,
   physics: {
     default: 'arcade',
     arcade: {
       gravity: { y: 0 },
-      debug: false
-    }
+      debug: false,
+    },
   },
   scene: {
     preload: preload,
     create: create,
-    update: update
-  }
+    update: update,
+  },
 };
 
 function updateEnemyHealthBar(enemy) {
@@ -453,12 +449,14 @@ function updateHealthBar() {
     gameOver.call(this);
   }
 }
-
 function gameOver() {
-  // Display "Game Over" message and pause physics
+  // Pause physics
+  this.physics.pause();
+
+  // Display "Game Over" message
   const gameOverText = this.add.text(
-    this.cameras.main.scrollX + config.width / 2,
-    config.height / 2 - 50,
+    this.cameras.main.midPoint.x,
+    this.cameras.main.midPoint.y - 50,
     'You Died',
     { fontSize: '64px', fill: '#fff' }
   ).setOrigin(0.5);
@@ -466,8 +464,8 @@ function gameOver() {
   
   // Add "Press R to restart" text
   const restartText = this.add.text(
-    this.cameras.main.scrollX + config.width / 2,
-    config.height / 2 + 50,
+    this.cameras.main.midPoint.x,
+    this.cameras.main.midPoint.y + 50,
     'Press R to restart',
     { fontSize: '32px', fill: '#fff' }
   ).setOrigin(0.5);
@@ -481,10 +479,7 @@ function gameOver() {
     gameOverText.destroy();
     restartText.destroy();
   });
-
-  this.physics.pause();
 }
-
 
 function getFireRate(weaponType) {
   switch(weaponType) {
@@ -597,14 +592,14 @@ const MeebleCrossing = () => {
       const leftJoystick = NippleJS.create({
         zone: leftJoystickRef.current,
         mode: 'static',
-        position: { left: '50px', bottom: '100px' },
+        position: { left: '50px', bottom: '150px' }, // Adjust position as needed
         color: 'blue'
       });
 
       const rightJoystick = NippleJS.create({
         zone: rightJoystickRef.current,
         mode: 'static',
-        position: { right: '50px', bottom: '100px' },
+        position: { right: '50px', bottom: '150px' }, // Adjust position as needed
         color: 'red'
       });
 
@@ -636,7 +631,7 @@ const MeebleCrossing = () => {
 
   return (
     <>
-      <playMusic audioSrc="titleTheme" loopStart="3" loopEnd="15" isPlaying="true" />
+      <BackgroundMusic audioSrc={titleTheme} loopStart={3} loopEnd={15} isPlaying={true} />
       <div className="game-container" id="phaser-game" />
       <div className="mobile-controls">
         <div ref={leftJoystickRef} className="joystick"></div>
@@ -647,5 +642,3 @@ const MeebleCrossing = () => {
     </>
   );
 };
-
-export default MeebleCrossing;
